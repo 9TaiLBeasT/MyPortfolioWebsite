@@ -1,0 +1,300 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 225 14% 6%;
+    --foreground: 0 0% 98%;
+    --card: 226 14% 10%;
+    --card-foreground: 0 0% 98%;
+    --popover: 226 14% 15%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 275 86% 61%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 191 97% 77%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 228 7% 30%;
+    --muted-foreground: 228 7% 70%;
+    --accent: 260 100% 60%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 228 7% 30%;
+    --input: 228 7% 30%;
+    --ring: 275 86% 61%;
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary to-[#D946EF] bg-clip-text text-transparent;
+  }
+  
+  .gradient-text-secondary {
+    @apply bg-gradient-to-r from-secondary to-[#0EA5E9] bg-clip-text text-transparent;
+  }
+  
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-[0_0_15px_rgba(134,67,245,0.5)] hover:-translate-y-1;
+  }
+  
+  .nav-link {
+    @apply relative transition-colors duration-200 hover:text-white;
+  }
+  
+  .nav-link::after {
+    @apply content-[''] absolute bg-primary h-[3px] w-0 left-0 -bottom-1 rounded-full transition-all duration-300;
+  }
+  
+  .nav-link:hover::after {
+    @apply w-full;
+  }
+  
+  .skill-item {
+    @apply px-3 py-1 border border-muted text-muted-foreground rounded-md text-sm hover:border-primary hover:text-white transition-all duration-300 hover:scale-110 hover:shadow-[0_0_10px_rgba(134,67,245,0.4)];
+  }
+  
+  .glow-effect {
+    @apply relative;
+  }
+  
+  .glow-effect::before {
+    @apply content-[''] absolute inset-0 bg-gradient-to-r from-primary to-secondary opacity-0 transition-opacity duration-300 blur-xl -z-10;
+  }
+  
+  .glow-effect:hover::before {
+    @apply opacity-20;
+  }
+  
+  .neon-border {
+    @apply border-primary transition-all duration-300;
+    box-shadow: 0 0 5px theme('colors.primary.DEFAULT'), 
+                inset 0 0 5px theme('colors.primary.DEFAULT');
+  }
+  
+  .neon-border:hover {
+    box-shadow: 0 0 10px theme('colors.primary.DEFAULT'), 
+                inset 0 0 10px theme('colors.primary.DEFAULT');
+  }
+  @keyframes ping-slow {
+    0% {
+      transform: scale(1);
+      opacity: 0.7;
+    }
+    50% {
+      transform: scale(1.2);
+      opacity: 0.4;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 0.7;
+    }
+  }
+  .animate-ping-slow {
+    animation: ping-slow 3s cubic-bezier(0, 0, 0.2, 1) infinite;
+  }
+  .animate-float {
+    animation: float 4s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
+  }
+  
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+  
+  @keyframes pulse-glow {
+    0% {
+      box-shadow: 0 0 5px theme('colors.primary.DEFAULT');
+    }
+    50% {
+      box-shadow: 0 0 15px theme('colors.primary.DEFAULT');
+    }
+    100% {
+      box-shadow: 0 0 5px theme('colors.primary.DEFAULT');
+    }
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  .animate-slide-in {
+    animation: slideIn 0.5s ease-out forwards;
+  }
+  
+  .animate-shine {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .animate-shine::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.1) 50%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    transform: rotate(30deg);
+    animation: shine 4s infinite linear;
+  }
+  
+  @keyframes shine {
+    from {
+      transform: translateX(-100%) rotate(30deg);
+    }
+    to {
+      transform: translateX(100%) rotate(30deg);
+    }
+  }
+  
+  .social-icon {
+    @apply w-10 h-10 rounded-full bg-muted/30 flex items-center justify-center text-primary hover:bg-primary/20 transition-all duration-300;
+  }
+  
+  .social-icon:hover {
+    @apply transform scale-110 shadow-[0_0_15px_rgba(134,67,245,0.5)];
+  }
+  
+  .social-icon svg {
+    @apply transition-transform duration-300;
+  }
+  
+  .social-icon:hover svg {
+    @apply transform scale-110;
+  }
+  
+  .animate-typing {
+    width: 0;
+    animation: typing 1s steps(30, end) forwards;
+  }
+  
+  @keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+  }
+  
+  .text-glow {
+    text-shadow: 0 0 5px theme('colors.primary.DEFAULT');
+  }
+  
+  .text-glow-hover:hover {
+    text-shadow: 0 0 8px theme('colors.primary.DEFAULT');
+  }
+  
+  .section-title-animation {
+    animation: fadeInDown 1s ease-out forwards;
+  }
+  
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .staggered-fade-in > * {
+    opacity: 0;
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+  
+  .staggered-fade-in > *:nth-child(1) { animation-delay: 0.1s; }
+  .staggered-fade-in > *:nth-child(2) { animation-delay: 0.2s; }
+  .staggered-fade-in > *:nth-child(3) { animation-delay: 0.3s; }
+  .staggered-fade-in > *:nth-child(4) { animation-delay: 0.4s; }
+  .staggered-fade-in > *:nth-child(5) { animation-delay: 0.5s; }
+  
+  /* Tooltip styles */
+  [data-tooltip] {
+    position: relative;
+  }
+  
+  [data-tooltip]::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    left: calc(100% + 8px);
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: hsl(var(--card));
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    z-index: 100;
+    border: 1px solid hsl(var(--border));
+  }
+  
+  [data-tooltip]:hover::after {
+    opacity: 1;
+  }
+}
